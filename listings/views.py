@@ -28,11 +28,45 @@ def listing(request, listing_id):
     return render(request, 'listings/listing.html', context)
 
 
+#Fonction de recherche dans le formulaire
 def search(request):
+    query_list = Listing.objects.order_by('-list_date')
+
+    #Keywords
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            query_list = query_list.filter(description__icontains=keywords)
+
+    #city
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            query_list = query_list.filter(city__iexact=city)
+
+    #state
+    if 'state' in request.GET:
+        state = request.GET['state']
+        if state:
+            query_list = query_list.filter(state__iexact=state)
+
+    #Bedrooms
+    if 'bedrooms' in request.GET:
+        bedrooms = request.GET['bedrooms']
+        if bedrooms:
+            query_list = query_list.filter(bedrooms__lte=bedrooms)
+
+    #Bedrooms
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            query_list = query_list.filter(price__lte=price)
 
     context = {
+        'listings': query_list,
         'state_choices': state_choices,
         'price_choices':  price_choices,
-        'bedroom_choices': bedroom_choices
+        'bedroom_choices': bedroom_choices,
+        'values' : request.GET
     }
     return render(request, 'listings/search.html', context)
