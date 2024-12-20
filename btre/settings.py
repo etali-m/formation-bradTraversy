@@ -157,3 +157,9 @@ DEFAULT_FROM_EMAIL = 'etalijunior15@gmail.com'
 EMAIL_HOST_PASSWORD = '05f27a1841f71b'
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
+
+#Pour le déploiement de l'application
+try:
+    from .local_settings import *
+except ImportError:
+    pass
