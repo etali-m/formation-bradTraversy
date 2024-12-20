@@ -149,14 +149,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-# Configuration du serveur STMP de mailtrap pour l'envoi de mail aux utilisateur.
-# Looking to send emails in production? Check out our Email API/SMTP product!
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = '80bb7a5bd169ed'
-DEFAULT_FROM_EMAIL = 'etalijunior15@gmail.com'
-EMAIL_HOST_PASSWORD = '05f27a1841f71b'
-EMAIL_PORT = '2525'
-EMAIL_USE_TLS = True
 
 #Pour le déploiement de l'application
 try:
